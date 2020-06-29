@@ -1,7 +1,7 @@
 import argparse
 from typing import Type
 
-from espnet2.utils.pack_funcs import pack
+from espnet2.main_funcs.pack_funcs import pack
 
 
 class PackedContents:
@@ -20,12 +20,12 @@ class TTSPackedContents(PackedContents):
 
 
 def add_arguments(parser: argparse.ArgumentParser, contents: Type[PackedContents]):
-    parser.add_argument(f"--outpath", type=str, required=True)
+    parser.add_argument("--outpath", type=str, required=True)
     for key in contents.yaml_files:
         parser.add_argument(f"--{key}", type=str, default=None)
     for key in contents.files:
         parser.add_argument(f"--{key}", type=str, default=None)
-    parser.add_argument(f"--option", type=str, action="append", default=[])
+    parser.add_argument("--option", type=str, action="append", default=[])
     parser.add_argument(
         "--mode",
         type=str,
